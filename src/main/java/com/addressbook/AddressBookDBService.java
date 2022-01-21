@@ -34,16 +34,27 @@ public class AddressBookDBService {
 
     public List<AddressBookData> readData() {
             String sql = "SELECT * FROM Contacts; ";
-            List<AddressBookData> addressBookList = new ArrayList<>();
-            try (Connection connection = this.getConnection()){
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(sql);
-                addressBookList = this.getAddressBookData(resultSet);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-            return addressBookList;
+            return this.getAddressBookDataUsingDB(sql);
         }
+
+    public List<AddressBookData> getContactForDateRange(LocalDate startDate, LocalDate endDate) {
+        String sql = String.format("SELECT *FROM Contacts WHERE date BETWEEN '%s' AND '%s';" ,
+                Date.valueOf(startDate), Date.valueOf(endDate));
+        return this.getAddressBookDataUsingDB(sql);
+    }
+
+    private List<AddressBookData> getAddressBookDataUsingDB(String sql) {
+        List<AddressBookData> addressBookList = new ArrayList<>();
+        try (Connection connection = this.getConnection()){
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            addressBookList = this.getAddressBookData(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return addressBookList;
+    }
+
     public List<AddressBookData> getAddressBookData(String name) {
         List<AddressBookData> addressBookList = null;
         if(this.addressBookDataStatement == null)
