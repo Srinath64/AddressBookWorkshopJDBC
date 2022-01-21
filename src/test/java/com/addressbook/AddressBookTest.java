@@ -16,15 +16,15 @@ public class AddressBookTest {
         Assertions.assertEquals(3,addressBookData.size());
     }
     @Test
-    public void givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB() {
+    public void givenNewAddress_WhenUpdated_ShouldSyncWithDB() {
         AddressBookService addressBookService = new AddressBookService();
         List<AddressBookData> addressBookData = addressBookService.readAddressBookData(DB_IO);
         addressBookService.updateContactAddress("Srinath", "Chennai");
-        boolean result = addressBookService.checkEmployeePayrollInSyncWithDB("Srinath");
+        boolean result = addressBookService.checkAddressBookInSyncWithDB("Srinath");
         Assertions.assertTrue(result);
     }
     @Test
-    public void givenDateRange_WhenRetrieved_ShouldMatchEmployeeCount(){
+    public void givenDateRange_WhenRetrieved_ShouldMatchContactsCount(){
         AddressBookService addressBookService = new AddressBookService();
         addressBookService.readAddressBookData(DB_IO);
         LocalDate startDate = LocalDate.of(2020,01,01);
