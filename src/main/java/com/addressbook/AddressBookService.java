@@ -23,7 +23,7 @@ public class AddressBookService {
         return this.addressBookList;
     }
 
-    public boolean checkEmployeePayrollInSyncWithDB(String name) {
+    public boolean checkAddressBookInSyncWithDB(String name) {
         List<AddressBookData> addressBookDataList = addressBookDBService.getAddressBookData(name);
         return addressBookDataList.get(0).equals(getAddressBookData(name));
     }
