@@ -48,7 +48,7 @@ public class AddressBookService {
                 .orElse(null);
     }
 
-    public void addContactToAddressBook(String name, String address, String state, LocalDate date){
-        addressBookList.add(addressBookDBService.addContactToAddressBook(name,address,state,date));
+    public void addContactToAddressBook(int id,String name, String address, String state, LocalDate date){
+        addressBookList.add(addressBookDBService.addContactToAddressBook(id,name,address,state,date));
     }
 }

@@ -36,7 +36,7 @@ public class AddressBookTest {
     public void givenNewContact_WhenAdded_ShouldSyncWithDB(){
         AddressBookService addressBookService = new AddressBookService();
         addressBookService.readAddressBookData(DB_IO);
-        addressBookService.addContactToAddressBook("Pradeep","Vellore","Tamilnadu", LocalDate.now());
+        addressBookService.addContactToAddressBook(4,"Pradeep","Vellore","Tamilnadu", LocalDate.now());
         boolean result = addressBookService.checkAddressBookInSyncWithDB("Pradeep");
         Assertions.assertTrue(result);
     }

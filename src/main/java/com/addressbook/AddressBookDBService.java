@@ -108,10 +108,9 @@ public class AddressBookDBService {
         return 0;
     }
 
-    public AddressBookData addContactToAddressBook(String name, String address, String state, LocalDate date) {
-        int id = 4;
+    public AddressBookData addContactToAddressBook(int id, String name, String address, String state, LocalDate date) {
         AddressBookData addressBookData = null;
-        String sql = String.format("INSERT INTO Contacts (name, address, state, date) VALUES ('%s', '%s', '%s' '%s')",id,name,address,state,date);
+        String sql = String.format("INSERT INTO Contacts (id,name, address, state, date) VALUES ('%s','%s','%s','%s','%s')",id,name,address,state,date);
         try (Connection connection = this.getConnection()){
             Statement statement = connection.createStatement();
             int rowAffected = statement.executeUpdate(sql, statement.RETURN_GENERATED_KEYS);
