@@ -19,7 +19,7 @@ public class AddressBookTest {
     public void givenNewAddress_WhenUpdated_ShouldSyncWithDB() {
         AddressBookService addressBookService = new AddressBookService();
         List<AddressBookData> addressBookData = addressBookService.readAddressBookData(DB_IO);
-        addressBookService.updateContactAddress("Srinath", "Krishnagiri");
+        addressBookService.updateContactAddress("Srinath", "Chennai");
         boolean result = addressBookService.checkAddressBookInSyncWithDB("Srinath");
         Assertions.assertTrue(result);
     }
